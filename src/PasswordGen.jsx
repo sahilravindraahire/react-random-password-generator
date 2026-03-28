@@ -2,13 +2,16 @@ import { useState, useCallback, useEffect, useRef } from "react";
 
 function PasswordGen() {
   const [length, setLength] = useState(8);
+  const [addLowerCase, setAddLowerCase] = useState(false)
   const [addNumb, setAddNumb] = useState(false);
   const [addSymb, setAddSymb] = useState(false);
   const [password, setPassword] = useState("");
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
-    let baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    if(addLowerCase) baseString += "abcdefghijklmnopqrstuvwxyz"
 
     if (addNumb) baseString += "0123456789";
 
@@ -35,7 +38,7 @@ function PasswordGen() {
   };
 
   return (
-    <div className="border rounded-2xl px-5 py-3 flex flex-col items-center">
+    <div className="border bg-slate-600 border-none text-white rounded-2xl px-5 py-3 flex flex-col items-center">
       <div>
         <h1 className="text-3xl font-bold">Password Generator</h1>
       </div>
@@ -65,6 +68,15 @@ function PasswordGen() {
             type="range"
           />
           <label htmlFor="">Length: {length}</label>
+        </div>
+        <div>
+          <input
+            checked={addLowerCase}
+            onChange={() => setAddLowerCase(!addLowerCase)}
+            className="mx-3"
+            type="checkBox"
+          />
+          <label htmlFor="">Add LowerCase</label>
         </div>
         <div>
           <input
