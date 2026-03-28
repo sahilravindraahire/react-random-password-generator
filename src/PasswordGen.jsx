@@ -69,7 +69,7 @@ function PasswordGen() {
         <div>
           <input
             checked={addNumb}
-            onChange={() => setAddNumb((prev) => !prev)}
+            onChange={() => setAddNumb(!addNumb)}
             className="mx-3"
             type="checkBox"
           />
@@ -77,7 +77,7 @@ function PasswordGen() {
         </div>
         <div>
           <input
-            onChange={() => setAddSymb((prev) => !prev)}
+            onChange={() => setAddSymb(!addSymb)}
             className="mx-3"
             type="checkBox"
           />
