@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 
 function PasswordGen() {
   const [length, setLength] = useState(8);
-  const [addLowerCase, setAddLowerCase] = useState(false)
+  const [addLowerCase, setAddLowerCase] = useState(false);
   const [addNumb, setAddNumb] = useState(false);
   const [addSymb, setAddSymb] = useState(false);
   const [password, setPassword] = useState("");
@@ -11,7 +11,7 @@ function PasswordGen() {
     let pass = "";
     let baseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    if(addLowerCase) baseString += "abcdefghijklmnopqrstuvwxyz"
+    if (addLowerCase) baseString += "abcdefghijklmnopqrstuvwxyz";
 
     if (addNumb) baseString += "0123456789";
 
@@ -37,25 +37,35 @@ function PasswordGen() {
     passwordRef.current?.select();
   };
 
+  const passwordStrength =
+    addLowerCase || addNumb || addSymb ? "Strong Password ✅" : "Weak Password ❌";
+
   return (
     <div className="border bg-slate-600 border-none text-white rounded-2xl px-5 py-3 flex flex-col items-center">
       <div>
-        <h1 className="text-3xl font-bold">Password Generator</h1>
-      </div>
-      <div className="flex flex-row justify-between gap-8 mx-5 my-5">
-        <input
-          ref={passwordRef}
-          type="text"
-          value={password}
-          readOnly
-          className="border px-4 py-2 text-center"
-        />
-        <button
-          onClick={copyPassword}
-          className="border px-4 py-2 active:scale-95 rounded-2xl"
-        >
-          Copy
-        </button>
+        <div className="text-center my-8">
+          <div className="mb-10">
+            <h1 className="text-3xl font-bold">Password Generator</h1>
+          </div>
+          <div className="flex flex-row justify-between gap-8 mx-5 my-5">
+            <input
+              ref={passwordRef}
+              type="text"
+              value={password}
+              readOnly
+              className="border px-4 py-2 text-center"
+            />
+            <button
+              onClick={copyPassword}
+              className="border px-4 py-2 active:scale-95 rounded-2xl"
+            >
+              Copy
+            </button>
+          </div>
+          <div>
+            <p className="">{passwordStrength}</p>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col items-center gap-4 my-5">
         <div>
@@ -101,4 +111,3 @@ function PasswordGen() {
 }
 
 export default PasswordGen;
-
